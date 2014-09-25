@@ -1,4 +1,4 @@
-<project>
+<project name="gitproj" default="main">
 
     <property name="builddir" value="build/classes"/>
     <property name="sourcedir" value="src"/>
@@ -32,5 +32,7 @@
             <classpath refid="gitproj.classpath"/>
         </junit>
     </target>
+    
+    <target name="main" depends="clear,compile,test" />
 
 </project>
