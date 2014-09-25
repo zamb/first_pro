@@ -1,12 +1,36 @@
 <project>
 
+    <property name="builddir" value="build/classes"/>
+    <property name="sourcedir" value="src"/>
+    <property name="junitdir" value="junit_out"/>
+
+    <path id="gitproj.classpath">
+        <pathelement location="${sourcedir}"/>
+        <pathelement location="${builddir}"/>
+        <pathelement location="junits/junit.jar" />
+        <pathelement location="junits/hamcrest.jar" />
+    </path>
+    
     <target name="clean">
         <delete dir="build"/>
+        <delete dir="junit_out"/>
     </target>
 
     <target name="compile">
-        <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes"/>
+        <mkdir dir="${builddir}"/>
+        
+        <javac srcdir="src" destdir="${builddir}">
+           <classpath refid="gitproj.classpath"/>
+        </javac>
+    </target>
+
+    <target name="test">
+        <mkdir dir="${junitdir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="MyUnitTest" todir="${junitdir}"/>
+            <classpath refid="gitproj.classpath"/>
+        </junit>
     </target>
 
 </project>
