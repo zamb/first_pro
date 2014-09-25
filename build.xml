@@ -11,7 +11,7 @@
         <pathelement location="junits/hamcrest.jar" />
     </path>
     
-    <target name="clean">
+    <target name="clear">
         <delete dir="build"/>
         <delete dir="junit_out"/>
     </target>
